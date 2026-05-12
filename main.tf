@@ -1,34 +1,27 @@
-resource "docker_image" "nginx" {
-  name = var.nginx_image
+resource "github_repository" "app" {
+  name        = "${var.project_name}-demo"
+  description = "Dépôt géré par Terraform - DevOps S8"
+  visibility  = "public"
+  has_issues  = true
+  has_wiki    = false
+  auto_init   = true
+
+  topics = ["terraform", "devops"]
 }
 
-resource "docker_image" "redis" {
-  name = "redis:alpine"
+resource "github_actions_secret" "db_url" {
+  repository      = github_repository.app.name
+  secret_name     = "DATABASE_URL"
+  plaintext_value = var.db_url
 }
 
-resource "docker_network" "app" {
-  name = "app-network"
-}
+resource "github_repository" "test" {
+  name        = "${var.project_name}-test"
+  description = "Second dépôt Terraform"
 
-resource "docker_container" "web" {
-  name  = "${var.project_name}-web"
-  image = docker_image.nginx.image_id
+  visibility = "public"
 
-  ports {
-    internal = 80
-    external = var.host_port
-  }
-
-  networks_advanced {
-    name = docker_network.app.name
-  }
-}
-
-resource "docker_container" "redis" {
-  name  = "${var.project_name}-redis"
-  image = docker_image.redis.image_id
-
-  networks_advanced {
-    name = docker_network.app.name
-  }
+  has_wiki   = true
+  has_issues = false
+  auto_init  = true
 }

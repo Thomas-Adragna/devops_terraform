@@ -3,4 +3,4 @@ Devops S8 - TP3.pdf
 .terraform.lock.hcl
 *.tfstate
 *.tfstate.backup
-*.tfvars
+terraform.tfvars

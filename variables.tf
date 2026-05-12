@@ -1,17 +1,17 @@
+variable "github_token" {
+  description = "Personal Access Token GitHub"
+  type        = string
+  sensitive   = true
+}
+
 variable "project_name" {
   description = "Nom du projet"
   type        = string
-  default     = "tp-terraform"
 }
 
-variable "host_port" {
-  description = "Port sur la machine hôte"
-  type        = number
-  default     = 8080
-}
-
-variable "nginx_image" {
-  description = "Image Docker utilisée pour le serveur web"
+variable "db_url" {
+  description = "URL de base de données"
   type        = string
-  default     = "nginx:alpine"
+  sensitive   = true
+  default     = "postgresql://user:pass@localhost/mydb"
 }

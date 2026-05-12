@@ -1,7 +1,7 @@
-output "container_name" {
-  value = docker_container.web.name
+output "repository_name" {
+  value = github_repository.app.name
 }
 
-output "url" {
-  value = "http://localhost:${docker_container.web.ports[0].external}"
+output "repository_url" {
+  value = github_repository.app.html_url
 }
