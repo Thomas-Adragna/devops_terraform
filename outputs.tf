@@ -5,3 +5,7 @@ output "instance_public_ip" {
 output "ssh_command" {
   value = "ssh -i ~/.ssh/tp_terraform ubuntu@${aws_instance.web.public_ip}"
 }
+
+output "bucket_name" {
+  value = aws_s3_bucket.assets.bucket
+}
