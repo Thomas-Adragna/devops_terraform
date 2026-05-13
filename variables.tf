@@ -7,3 +7,14 @@ variable "project_name" {
   type    = string
   default = "tp-terraform"
 }
+
+variable "environment" {
+  description = "Environnement de déploiement"
+  type        = string
+  default     = "dev"
+}
+
+variable "owner" {
+  description = "Responsable du projet"
+  type        = string
+}
