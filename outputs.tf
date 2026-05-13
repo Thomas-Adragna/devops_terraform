@@ -1,7 +1,7 @@
-output "repository_name" {
-  value = github_repository.app.name
+output "instance_public_ip" {
+  value = aws_instance.web.public_ip
 }
 
-output "repository_url" {
-  value = github_repository.app.html_url
+output "ssh_command" {
+  value = "ssh -i ~/.ssh/tp_terraform ubuntu@${aws_instance.web.public_ip}"
 }
